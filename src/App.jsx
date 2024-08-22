@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 const BASE_URL = "http://localhost:9000";
 
 function App() {
-  const [cities, Setcities] = useState({});
+  const [cities, Setcities] = useState([]);
   const [isLoading, SetisLoading] = useState(false);
   useEffect(function () {
     async function fetchCities(params) {
@@ -35,8 +35,14 @@ function App() {
         <Route path="pricing" element={<Pricing />} />
         <Route path="/login" element={<Login />} />
         <Route path="app" element={<AppLayout />}>
-          <Route index element={<CityList />} />
-          <Route path="cities" element={<CityList />} />
+          <Route
+            index
+            element={<CityList cities={cities} isLoading={isLoading} />}
+          />
+          <Route
+            path="cities"
+            element={<CityList cities={cities} isLoading={isLoading} />}
+          />
           <Route path="countries" element={<p>Countries</p>} />
           <Route path="form" element={<p>Form</p>} />
         </Route>
