@@ -6,8 +6,27 @@ import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./pages/AppLayout";
 import Login from "./pages/Login";
 import CityList from "./components/CityList";
+import { useEffect, useState } from "react";
+const BASE_URL = "http://localhost:9000";
 
 function App() {
+  const [cities, Setcities] = useState({});
+  const [isLoading, SetisLoading] = useState(false);
+  useEffect(function () {
+    async function fetchCities(params) {
+      try {
+        SetisLoading(true);
+        const res = await fetch(`${BASE_URL}/cities`);
+        const data = await res.json();
+        Setcities(data);
+      } catch {
+        alert("There was an error in loding data...");
+      } finally {
+        SetisLoading(false);
+      }
+    }
+    fetchCities();
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
