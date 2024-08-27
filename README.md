@@ -34,4 +34,4 @@ To set up the project, follow these steps:
 
 6. Open your browser and visit `http://localhost:5173/` to view the application.
 
-That's it! You have successfully set up the project. Happy coding!
+ That's it! You have successfully set up the project. Happy coding!
