@@ -20,12 +20,18 @@ To set up the project, follow these steps:
    npm install
    ```
 
-4. Start the development server:
+4. Start the fake api server:
+
+   ```
+   npm run server
+   ```
+
+5. Start the development server:
 
    ```
    npm run dev
    ```
 
-5. Open your browser and visit `http://localhost:5173/` to view the application.
+6. Open your browser and visit `http://localhost:5173/` to view the application.
 
 That's it! You have successfully set up the project. Happy coding!
