@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 const BASE_URL = "http://localhost:9000";
 
 const CitiesContext = createContext();
-function CitiesProvider({ childern }) {
+function CitiesProvider({ children }) {
   const [cities, Setcities] = useState([]);
   const [isLoading, SetisLoading] = useState(false);
   useEffect(function () {
@@ -20,4 +20,16 @@ function CitiesProvider({ childern }) {
     }
     fetchCities();
   }, []);
+
+  return (
+    <CitiesContext.Provider
+      value={{
+        cities,
+        isLoading,
+      }}
+    >
+      {children}
+    </CitiesContext.Provider>
+  );
 }
+export { CitiesProvider };
