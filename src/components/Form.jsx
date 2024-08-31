@@ -24,7 +24,7 @@ function Form() {
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
   const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
-
+  const [emoji, setEmoji] = useState("");
   useEffect(
     function () {
       async function fetchCityData() {
@@ -36,6 +36,7 @@ function Form() {
           const data = await res.json();
           setCityName(data.cityName || data.locality || "");
           setCountry(data.countryName);
+          setEmoji(convertToEmoji(data.countryCode));
         } catch (err) {
         } finally {
           setIsLoadingGeocoding(false);
@@ -55,7 +56,7 @@ function Form() {
           onChange={(e) => setCityName(e.target.value)}
           value={cityName}
         />
-        {/* <span className={styles.flag}>{emoji}</span> */}
+        <span className={styles.flag}>{emoji}</span>
       </div>
 
       <div className={styles.row}>
