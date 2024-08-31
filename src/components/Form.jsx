@@ -11,6 +11,7 @@ import Spinner from "./Spinner";
 import DatePicker from "react-datepicker"; // npm package import component //
 import "react-datepicker/dist/react-datepicker.css";
 import { useCities } from "../contexts/CitiesContext";
+import { useNavigate } from "react-router-dom";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -23,7 +24,8 @@ export function convertToEmoji(countryCode) {
 const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
 function Form() {
-  const { createCity } = useCities(); // create city from contex api //
+  const navigate = useNavigate();
+  const { createCity, isLoading } = useCities(); // create city from contex api //
   const [lat, lng] = useUrlPosition(); // destructured array  //
   const [cityName, setCityName] = useState("");
   const [country, setCountry] = useState("");
@@ -61,7 +63,7 @@ function Form() {
     [lat, lng]
   );
 
-  function handelSumbmit(e) {
+  async function handelSumbmit(e) {
     e.preventDefault();
     if (!cityName || !date) return;
     const newCity = {
@@ -72,7 +74,8 @@ function Form() {
       notes,
       position: { lat, lng },
     };
-    createCity(newCity);
+    await createCity(newCity); // we dont want navigate immediately after this function call//
+    navigate("/app/cities");
   }
 
   if (isLoadingGeocoding) return <Spinner />;
@@ -81,7 +84,10 @@ function Form() {
   if (geocodingError) return <Message message={geocodingError} />;
 
   return (
-    <form className={styles.form} onSubmit={handelSumbmit}>
+    <form
+      className={`${styles.form} ${isLoading ? styles.loading : ""}`}
+      onSubmit={handelSumbmit}
+    >
       <div className={styles.row}>
         <label htmlFor="cityName">City name</label>
         <input
