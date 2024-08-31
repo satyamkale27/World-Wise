@@ -35,6 +35,30 @@
         "lng": 13.376933665713324
       },
       "id": 98443197
+    },
+    {
+      "cityName": "Nossa Senhora da Vila",
+      "country": "Portugal",
+      "emoji": "🇵🇹",
+      "date": "2024-08-31T12:58:47.987Z",
+      "notes": "instructors city",
+      "position": {
+        "lat": "38.73694606567603",
+        "lng": "-8.217773437500002"
+      },
+      "id": 98443198
+    },
+    {
+      "cityName": "Navi Mumbai",
+      "country": "India",
+      "emoji": "🇮🇳",
+      "date": "2024-08-31T13:10:22.677Z",
+      "notes": "my location",
+      "position": {
+        "lat": "19.02057711096681",
+        "lng": "73.03161621093751"
+      },
+      "id": 98443199
     }
   ]
 }
