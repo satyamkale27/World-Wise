@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { useCities } from "../contexts/CitiesContext";
 import { useGeolocation } from "../hooks/UseGeolocation";
 import Button from "./Button";
+import { useUrlPosition } from "../hooks/useUrlPosition";
 
 function Map() {
   const { cities } = useCities();
@@ -22,6 +23,8 @@ function Map() {
     position: geolocationPosition,
     getPosition,
   } = useGeolocation(); // destructured  and renamed //
+
+  const [mapLat, mapLng] = useUrlPosition(); // destructured array with mapLat, mapLng names //
 
   useEffect(
     function () {
