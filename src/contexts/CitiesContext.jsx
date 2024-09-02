@@ -23,7 +23,6 @@ function CitiesProvider({ children }) {
   }, []);
 
   async function getCity(id) {
-    // sends data to
     try {
       SetisLoading(true);
       const res = await fetch(`${BASE_URL}/cities/${id}`);
@@ -49,7 +48,22 @@ function CitiesProvider({ children }) {
       const data = await res.json();
       Setcities((cities) => [...cities, data]); // new city add //
     } catch {
-      alert("There was an error in loding data...");
+      alert("There was an error in creating city...");
+    } finally {
+      SetisLoading(false);
+    }
+  }
+
+  async function deleteCity(id) {
+    try {
+      SetisLoading(true);
+      await fetch(`${BASE_URL}/cities/${id}`, {
+        method: "DELETE",
+      });
+
+      Setcities((cities) => cities.filter((city) => city.id !== id)); // update the state after deleting from api //
+    } catch {
+      alert("There was an error in deleting cities...");
     } finally {
       SetisLoading(false);
     }
@@ -63,6 +77,7 @@ function CitiesProvider({ children }) {
         currentCity,
         getCity,
         createCity,
+        deleteCity,
       }}
     >
       {children}
