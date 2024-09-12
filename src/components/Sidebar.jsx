@@ -3,6 +3,7 @@ import Logo from "./Logo";
 import AppNav from "./AppNav";
 import { Outlet } from "react-router-dom";
 function Sidebar() {
+  // <Outlet />  ensures that route path provided like cities show here //
   return (
     <div className={styles.sidebar}>
       <Logo />
